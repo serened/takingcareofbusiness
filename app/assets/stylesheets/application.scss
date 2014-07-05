@@ -1,0 +1,33 @@
+@import "foundation_and_overrides";
+@import url("//fonts.googleapis.com/css?family=Roboto:400,700,300|Press+Start+2P");
+
+
+//fonts
+.name {
+  font-family: 'Press Start 2P', cursive;
+  color: #FFD428;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  weight: 300;
+}
+
+#nav {
+  font-family: 'Roboto', sans-serif;
+  weight: 500;
+}
+
+a {
+  color: #F41C54;
+}
+
+label {
+  font-family: 'Roboto', sans-serif;
+  color: #FF9F00;
+  weight: 100;
+}
+
+.left_padding {
+  padding-left: 1em;
+}
