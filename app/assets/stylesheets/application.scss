@@ -31,3 +31,27 @@ label {
 .left_padding {
   padding-left: 1em;
 }
+
+.small_top_padding {
+  padding-top: 5em;
+}
+
+.big_top_padding {
+  padding-top: 10em;
+}
+
+.mario {
+  list-style-image: image-url('mario_mushroom.png');
+  width: auto;
+  height: auto;
+  font-family: 'Press Start 2P', cursive;
+  color: #FF9F00;
+  padding-right: 3em;
+}
+
+.tasks {
+  list-style-image: image-url('mario_star.png');
+  font-family: 'Press Start 2P', cursive;
+  color: #A8BF12;
+  padding-right: 3em;
+}

@@ -1,0 +1,31 @@
+.row
+  .small-12.column
+    %h2.name= "#{@project.title} TASKS TO COMPLETE"
+    .small-3.column
+    .small-9.column.small_top_padding  
+      - unless @tasks.nil?
+        %ul
+        - @tasks.each do |task|
+          %li
+            = link_to task.title
+          / = form_for(@task) do |f|
+          /   .field
+          /     = f.label :title
+          /     %br/
+          /     = f.text_area :title
+          /     %br/
+          /   .field
+          /     = f.label 'Complete'
+          /     %br/
+          /     = f.check_box :task_complete, {}, true, false
+          /     %br/
+          /   .actions
+          /     = f.submit "Submit", class: "button small radius"
+          /     = link_to "go back", @user, class: "button small radius secondary"
+
+
+  .small-12.column.big_top_padding
+    .small-6.column
+      %h4= link_to 'NEW TASK'
+    .small-6.column
+      %h4= 'placeholder stuff'

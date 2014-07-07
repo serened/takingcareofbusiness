@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
+  has_many :projects, dependent: :destroy
+  has_many :tasks, through: :projects
+
 
   def encrypt_password
     if password.present?

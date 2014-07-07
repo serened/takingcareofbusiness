@@ -11,9 +11,6 @@ gem 'sqlite3'
 gem 'foundation-rails'
 gem 'simple_form'
 
-# group :production do
-# end
-
 group :development do
   gem 'pry-rails'
   gem 'better_errors'
@@ -23,4 +20,5 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
+  gem 'shoulda'
 end

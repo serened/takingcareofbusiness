@@ -2,7 +2,23 @@ Rails.application.routes.draw do
 
   get '/' => 'central#index', as: :root
 
-  resources :users
+  # resources :users do
+  #   resources :projects do
+  #     resources :tasks
+  #   end
+  # end
+
+  resources :users do 
+    resources :projects
+  end
+
+  resources :projects do
+    resources :tasks
+  end
+
+  resources :tasks
+
+  
 
   ## here be the guards
   get '/log-in' => "sessions#new"
