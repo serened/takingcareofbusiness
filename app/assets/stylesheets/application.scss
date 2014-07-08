@@ -49,9 +49,15 @@ label {
   padding-right: 3em;
 }
 
-.tasks {
-  list-style-image: image-url('mario_star.png');
+.task {
   font-family: 'Press Start 2P', cursive;
   color: #A8BF12;
   padding-right: 3em;
+  list-style: none;
+  line-height: 4em;
+}
+.complete {
+  list-style-image: image-url('mario_star.png');
+  text-decoration: line-through;
+  color: #FF9F00;
 }

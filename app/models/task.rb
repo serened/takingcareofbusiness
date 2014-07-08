@@ -1,6 +1,8 @@
 class Task < ActiveRecord::Base
   belongs_to :project
 
+  attr_accessor :completed
+
   def new
   end
 

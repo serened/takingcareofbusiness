@@ -10,51 +10,75 @@ class TasksController < ApplicationController
     get_task
   end
 
-  def task_completed
-    @task_complete = false
+  def toggle_completed
+    get_task
 
-    @task = Task.find(param[:id])
-    @task.complete = Time.now
-      
-    if @task.save
-      @task_complete = true
-      flash[:success] = "You rule!"
-      redirect_to tasks_path
-    else
-      flash[:alert] = "Doh! Try again!"
-      redirect_to tasks_path
-    end   
-  end
+    # task_state = params[:completed] || session[:completed]
 
-  def update
-    get_project
-    get_user
-    @project.update!(project_params)
+    @task.toggle!(:completed)
 
-    if @project.save
-      flash[:success] = "Your project has been updated!"
-      redirect_to user_projects_path(@user.id)
-    else
-      flash[:alert] = "Doh! Try again!"
-      redirect_to new_user_project_path
+    respond_to do |format|
+      flash[:success] = "Task updated"
+      format.html { redirect_to project_tasks_path }
     end
+
+    # if completed == 'true'
+    #   @task.update_attributes(completed: true)
+    # else
+    #   @task.update_attributes(completed: false)
+    # end
+
+    # if @task.save
+    #   flash[:success] = "Psst! This task still needs to be completed!"
+    # else
+    #   flash[:alert] = "Doh! Try again!"
+    # end    
+    # redirect_to project_tasks_path
   end
-  # def new
-  #   get_user
-  #   @project = Project.new
+
+  # def completed_on
+  #   get_task
+  #   @task.update_attributes(completed: true)
+
+  #   if @task.save
+  #     flash[:success] = "Way to go! You rule!"
+  #   else
+  #     flash[:alert] = "Doh! Try again!"
+  #   end
+
+  #   redirect_to project_tasks_path
   # end
 
-  # def create
-  #   @project = Project.new(project_params)
+  # def update
+  #   get_project
+  #   get_user
+  #   @project.update!(project_params)
 
   #   if @project.save
-  #     flash[:success] = "Your project lives!"
-  #     redirect_to user_projects_path
+  #     flash[:success] = "Your project has been updated!"
+  #     redirect_to user_projects_path(@user.id)
   #   else
   #     flash[:alert] = "Doh! Try again!"
   #     redirect_to new_user_project_path
   #   end
   # end
+
+  def new
+    get_project
+    @task = Task.new
+  end
+
+  def create
+    @task = Task.new(task_params)
+
+    if @task.save
+      flash[:success] = "A new task lives!"
+      redirect_to project_tasks_path
+    else
+      flash[:alert] = "Doh! Try again!"
+      redirect_to new_project_task_path
+    end
+  end
 
   # def edit
   #   get_user
@@ -87,13 +111,13 @@ class TasksController < ApplicationController
 
   private
 
-  def task_state
-    @task_complete = false
+  def task_params
+    params.require(:task).permit(:title, :note, :completed)
   end
 
-  def task_params
-    params.require(:task).permit(:title, :note)
-  end
+  # def get_user
+  #   @user = current_user
+  # end
 
   def get_project
     @project = Project.find(params[:project_id])

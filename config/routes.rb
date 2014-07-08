@@ -13,12 +13,15 @@ Rails.application.routes.draw do
   end
 
   resources :projects do
-    resources :tasks
+    resources :tasks do
+    end
   end
 
-  resources :tasks
-
-  
+  resources :tasks do
+    member do
+      put :toggle_completed
+    end
+  end
 
   ## here be the guards
   get '/log-in' => "sessions#new"
