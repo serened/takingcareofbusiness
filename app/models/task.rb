@@ -12,4 +12,9 @@ class Task < ActiveRecord::Base
   def destroy
   end
 
+  def completed_task 
+    self.completed = true
+    self.save!
+  end
+
 end

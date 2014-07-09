@@ -1,13 +1,18 @@
 .row
   .small-12.column
     %h2.name= "#{@project.title} TASKS TO COMPLETE"
-    .small-3.column
+    .small-2.column
     .small-9.column.small_top_padding  
       - unless @tasks.nil?
         %ul.task
         - @tasks.each do |task|
           %li.task
-            = link_to task.title, toggle_completed_task_path(task), remote: true
+            = task.title
+            - if !task.completed?
+              = link_to 'mark this complete!', complete_task_path(task), class: 'status', method: :put, completed: true
+            - else
+              %p.complete= 'donezo!'
+
 
   .small-12.column.big_top_padding
     .small-6.column

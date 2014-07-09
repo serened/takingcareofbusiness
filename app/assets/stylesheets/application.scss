@@ -36,6 +36,10 @@ label {
   padding-top: 5em;
 }
 
+.medium_top_padding {
+  padding-top: 7em;
+}
+
 .big_top_padding {
   padding-top: 10em;
 }
@@ -57,7 +61,12 @@ label {
   line-height: 4em;
 }
 .complete {
-  list-style-image: image-url('mario_star.png');
+  font-family: 'Roboto', sans-serif;
   text-decoration: line-through;
   color: #FF9F00;
+}
+.status {
+  font-family: 'Roboto', sans-serif;
+  weight: 100;
+  color: #00AAB5;
 }

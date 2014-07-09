@@ -2,66 +2,19 @@ class TasksController < ApplicationController
 
   def index
     get_project
-    @tasks = Task.where(params[:project_id])
+    @tasks = [] 
+    @tasks = Task.where(project_id: params[:project_id])
+
+    if @tasks.nil?
+      flash[:alert] = "No tasks for you!"
+      redirect_to project_tasks_path
+    end
   end
 
   def edit
     get_user
     get_task
   end
-
-  def toggle_completed
-    get_task
-
-    # task_state = params[:completed] || session[:completed]
-
-    @task.toggle!(:completed)
-
-    respond_to do |format|
-      flash[:success] = "Task updated"
-      format.html { redirect_to project_tasks_path }
-    end
-
-    # if completed == 'true'
-    #   @task.update_attributes(completed: true)
-    # else
-    #   @task.update_attributes(completed: false)
-    # end
-
-    # if @task.save
-    #   flash[:success] = "Psst! This task still needs to be completed!"
-    # else
-    #   flash[:alert] = "Doh! Try again!"
-    # end    
-    # redirect_to project_tasks_path
-  end
-
-  # def completed_on
-  #   get_task
-  #   @task.update_attributes(completed: true)
-
-  #   if @task.save
-  #     flash[:success] = "Way to go! You rule!"
-  #   else
-  #     flash[:alert] = "Doh! Try again!"
-  #   end
-
-  #   redirect_to project_tasks_path
-  # end
-
-  # def update
-  #   get_project
-  #   get_user
-  #   @project.update!(project_params)
-
-  #   if @project.save
-  #     flash[:success] = "Your project has been updated!"
-  #     redirect_to user_projects_path(@user.id)
-  #   else
-  #     flash[:alert] = "Doh! Try again!"
-  #     redirect_to new_user_project_path
-  #   end
-  # end
 
   def new
     get_project
@@ -80,24 +33,18 @@ class TasksController < ApplicationController
     end
   end
 
-  # def edit
-  #   get_user
-  #   get_project
-  # end
 
-  # def update
-  #   get_project
-  #   get_user
-  #   @project.update!(project_params)
+  def complete
+    get_task
+    @task.toggle!(:completed)
 
-  #   if @project.save
-  #     flash[:success] = "Your project has been updated!"
-  #     redirect_to user_projects_path(@user.id)
-  #   else
-  #     flash[:alert] = "Doh! Try again!"
-  #     redirect_to new_user_project_path
-  #   end
-  # end
+    binding.pry
+
+    respond_to do |format|
+      flash[:success] = "Task complete!"
+      format.html { redirect_to project_tasks_path }
+    end
+  end
 
   # def destroy
   #   if @project.delete
@@ -112,7 +59,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :note, :completed)
+    params.require(:task).permit(:title, :note, :completed, :project_id)
   end
 
   # def get_user

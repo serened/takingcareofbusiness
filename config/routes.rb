@@ -19,7 +19,8 @@ Rails.application.routes.draw do
 
   resources :tasks do
     member do
-      put :toggle_completed
+      put :complete
+      get :complete
     end
   end
 
