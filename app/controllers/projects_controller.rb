@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    binding.pry
+    
     if @project.save
       flash[:success] = "Your project lives!"
       redirect_to user_projects_path
