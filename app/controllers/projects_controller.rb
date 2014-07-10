@@ -2,7 +2,14 @@ class ProjectsController < ApplicationController
 
   def index
     get_user
-    @projects = Project.where(user_id: @user.id)
+
+    if @user.nil?
+      flash[:alert] = "You must be logged in!"
+      redirect_to log_in_path
+    else
+      @projects = Project.where(user_id: @user.id)
+    end
+
   end
 
   def new
@@ -12,7 +19,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-
+    binding.pry
     if @project.save
       flash[:success] = "Your project lives!"
       redirect_to user_projects_path
@@ -54,7 +61,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :note)
+    params.require(:project).permit(:title, :note, :user_id)
   end
 
   def get_user

@@ -1,0 +1,20 @@
+one:
+  title: stuff
+  note: this is a string of chars
+  completed: false
+
+two:
+  title: another
+  note: right on
+  completed: false
+
+three:
+  title: sweetness
+  note: i got this
+  completed: true
+
+failing_task:
+  project_id: nil
+  title: this will fail
+  note: no 
+  completed: false

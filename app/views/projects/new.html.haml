@@ -6,6 +6,6 @@
       :method => 'post' do |f|
       = f.input :title, :required => true
       = f.input :note, as: :text
-      = f.hidden_field :user_id, :value => @user.user_id
+      = f.hidden_field :user_id, :value => @user.id
 
       = f.button :submit, 'Lets do this!', :class => "round small button"

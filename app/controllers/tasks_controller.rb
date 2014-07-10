@@ -38,11 +38,9 @@ class TasksController < ApplicationController
     get_task
     @task.toggle!(:completed)
 
-    binding.pry
-
     respond_to do |format|
       flash[:success] = "Task complete!"
-      format.html { redirect_to project_tasks_path }
+      format.html { redirect_to project_tasks_path(@task.project.id) }
     end
   end
 
@@ -61,10 +59,6 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :note, :completed, :project_id)
   end
-
-  # def get_user
-  #   @user = current_user
-  # end
 
   def get_project
     @project = Project.find(params[:project_id])
