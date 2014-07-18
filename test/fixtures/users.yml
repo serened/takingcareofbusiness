@@ -1,14 +1,14 @@
-one:
+user_one:
   email: test@test.com
-  password_hash: A0Mrhnu4  # secretsalt
-  password_salt: 868532ea243f03c2ce5f6f99dcf9e27342c39ce51819fa0605302ab4b5c3841e
+  password_hash: MyString
+  password_salt: MyString
 
-two:
+user_two:
   email: MyString
   password_hash: MyString
   password_salt: MyString
 
 bad_user:
-  email: nil
+  email: 
   password_hash: MyString
   password_salt: MyString

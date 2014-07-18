@@ -10,8 +10,10 @@
             = task.title
             - if !task.completed?
               = link_to 'mark this complete!', complete_task_path(task), class: 'status', method: :put, completed: true
-            - else
-              %p.complete= 'donezo!'
+            - if task.completed?
+              %li.star
+                %span.complete= 'donezo!'
+                %span.reopen= link_to '[ j/k! need to do again! ]', complete_task_path(task), method: :put, completed: false
 
 
   .small-12.column.big_top_padding
@@ -19,9 +21,3 @@
       %h4= link_to 'NEW TASK', new_project_task_path(params[:project_id])
     .small-6.column
       %h4= link_to 'BACK TO PROJECTS', user_projects_path(current_user.id)
-
-//javascript/ajax stuff:
-//toggle task line from not complete to complete
-//on click, trigger complete
-//add strikthrough on text
-//add star icon (change css class)

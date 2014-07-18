@@ -1,20 +1,21 @@
-one:
+task_one:
   title: stuff
   note: this is a string of chars
   completed: false
+  project: project_one
 
-two:
+task_two:
   title: another
   note: right on
   completed: false
+  project: project_one
 
-three:
+task_three:
   title: sweetness
   note: i got this
   completed: true
+  project: project_two
 
-failing_task:
-  project_id: nil
+bad_task:
   title: this will fail
-  note: no 
   completed: false

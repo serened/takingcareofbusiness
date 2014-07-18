@@ -5,9 +5,8 @@ class TasksController < ApplicationController
     @tasks = [] 
     @tasks = Task.where(project_id: params[:project_id])
 
-    if @tasks.nil?
+    if @tasks.empty?
       flash[:alert] = "No tasks for you!"
-      redirect_to project_tasks_path
     end
   end
 

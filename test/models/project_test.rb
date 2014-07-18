@@ -7,10 +7,8 @@ class ProjectTest < ActiveSupport::TestCase
     @project = Project.new(user_id: @user.id, title: 'awesome test', completed: false)
   end
 
-
   test "should belong to user" do
     assert @project.user
-    binding.pry
   end
 
 end
